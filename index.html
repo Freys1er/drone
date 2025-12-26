@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liam Frey | Aerial Cinematography</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Map Engine CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- === BACKGROUND LAYERS === -->
+    <div id="bg-map" class="bg-layer">
+        <div id="map-container" style="width:100%; height:100%;"></div>
+    </div>
+
+    <div id="bg-video-container" class="bg-layer">
+        <!-- Replace 'videos/1.mp4' with your actual background loop -->
+        <video id="bg-video" src="videos/1.mp4" autoplay loop muted playsinline></video>
+    </div>
+
+    <div id="bg-void" class="bg-layer"></div>
+
+
+    <!-- === FOREGROUND CONTENT === -->
+    <nav>
+        <div class="brand">LIAM FREY</div>
+        <div style="font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;">
+            <span class="status-dot"></span> TAIWAN
+        </div>
+    </nav>
+
+    <div id="main-content">
+
+        <!-- SECTION 1: HERO (Map BG) - Left Aligned, No Blur -->
+        <section id="hero" data-bg="map">
+            <div class="hero-content">
+                <div style="color:var(--accent); font-weight:bold; margin-bottom:20px;">
+                    <i class="fa-solid fa-location-crosshairs"></i> SUB-250G SPECIALIST
+                </div>
+                <h1>AERIAL<br>MASTERY.</h1>
+                <p>
+                    Navigating complex airspace requires data. We provide high-fidelity aerial cinematography compliant with Taiwan's CAA regulations.
+                </p>
+                <div style="margin-top: 30px;">
+                     <span style="font-family:var(--font-mono); font-size:0.8rem; color:rgba(255,255,255,0.7);">// DRAG MAP TO EXPLORE</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: PHILOSOPHY (Video BG) -->
+        <section id="philosophy" data-bg="video">
+            <div class="glass-panel" style="max-width: 800px; margin: 0 auto;">
+                <h2>The Art of Altitude.</h2>
+                <p>
+                    It’s not just about flying high; it’s about the <span class="highlight">perspective</span>.
+                    Utilizing the DJI Neo 2 and Avata platforms, we capture angles that larger aircraft simply cannot reach.
+                </p>
+                
+                <h3 style="margin-top: 40px; margin-bottom: 20px;">Mission Logs</h3>
+                <!-- Video Gallery -->
+                <div class="h-scroll" id="auto-gallery">
+                    <div style="padding:20px;">Loading archive...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: MISSIONS (Void BG) -->
+        <section id="missions" data-bg="void">
+            <div style="max-width: 1200px; width: 100%; margin: 0 auto;">
+                <h4 style="color:var(--accent); letter-spacing: 2px; margin-bottom: 10px;">OPERATIONAL CAPABILITIES</h4>
+                <h2>MISSION PROFILES.</h2>
+                
+                <div class="grid-3">
+                    <!-- Profile 1 -->
+                    <div class="glass-panel interactive">
+                        <i class="fa-solid fa-city" style="font-size:2rem; color:var(--text-muted); margin-bottom:20px;"></i>
+                        <h3>URBAN PROXIMITY</h3>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">
+                            Sub-250g classification allows for legal operation in dense metropolitan zones where traditional drones are grounded.
+                        </p>
+                    </div>
+
+                    <!-- Profile 2 -->
+                    <div class="glass-panel interactive">
+                        <i class="fa-solid fa-industry" style="font-size:2rem; color:var(--text-muted); margin-bottom:20px;"></i>
+                        <h3>INDOOR TACTICAL</h3>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">
+                            Prop-guarded Avata units for seamless transitions from outdoor environments to factory floors.
+                        </p>
+                    </div>
+
+                    <!-- Profile 3 -->
+                    <div class="glass-panel interactive">
+                        <i class="fa-solid fa-car-burst" style="font-size:2rem; color:var(--text-muted); margin-bottom:20px;"></i>
+                        <h3>HIGH VELOCITY</h3>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">
+                            Dynamic tracking of vehicles and athletes at speeds up to 100km/h with horizon-locked stabilization.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PROCESSING (Video BG) -->
+        <section id="processing" data-bg="video">
+            <div class="glass-panel" style="max-width:800px; margin: 0 auto; text-align: left; border-left: 4px solid var(--accent);">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <i class="fa-solid fa-wave-square" style="color:var(--accent); font-size: 2rem;"></i>
+                    <h2 style="margin:0;">SIGNAL PROCESSING.</h2>
+                </div>
+                <p>
+                    Aerial capture is only half the mission. We utilize a strictly calibrated color pipeline (D-Log M to Rec.709) and Gyroflow stabilization data.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 5: SPECS (Void BG) -->
+        <section id="specs" data-bg="void">
+            <h1 style="text-align: center; margin-bottom: 50px;">THE FLEET.</h1>
+            <div class="grid-3">
+                <!-- NEO 2 -->
+                <div class="glass-panel interactive">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                        <h3>DJI NEO 2</h3>
+                        <i class="fa-solid fa-feather" style="color:var(--accent); font-size:2rem;"></i>
+                    </div>
+                    <p>The ultimate stealth cinematography tool. Ultra-low noise profile meets high-resolution capture.</p>
+                    <div style="margin-top:20px; border-top:1px solid #333; padding-top:20px;">
+                        <div style="display:flex; justify-content:space-between;"><span>Weight</span> <span class="highlight">135g</span></div>
+                        <div style="display:flex; justify-content:space-between; margin-top:5px;"><span>Res</span> <span class="highlight">4K 60fps</span></div>
+                    </div>
+                </div>
+
+                <!-- AVATA -->
+                <div class="glass-panel interactive">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                        <h3>AVATA FPV</h3>
+                        <i class="fa-solid fa-glasses" style="color:var(--accent); font-size:2rem;"></i>
+                    </div>
+                    <p>High-speed tracking and dynamic FPV flight. Protected ducts allow for safe proximity flight.</p>
+                    <div style="margin-top:20px; border-top:1px solid #333; padding-top:20px;">
+                        <div style="display:flex; justify-content:space-between;"><span>Speed</span> <span class="highlight">27 m/s</span></div>
+                        <div style="display:flex; justify-content:space-between; margin-top:5px;"><span>Signal</span> <span class="highlight">O3+ (10km)</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: UPLINK / SAFETY (Map BG) -->
+        <section id="uplink" data-bg="map">
+            <div style="width: 100%; display: flex; justify-content: flex-end;">
+                <!-- Reusing glass-panel class but specific to terminal -->
+                <div class="glass-panel" style="width: 100%; max-width: 500px; padding: 0; overflow: hidden;">
+                    <div class="terminal-header">
+                        <i class="fa-solid fa-satellite-dish"></i> MISSION PRE-CHECK
+                    </div>
+                    <div class="terminal-form">
+                        <p style="margin-bottom: 20px; color:#aaa;">
+                            Enter a target location (e.g., "Taipei 101"). System will scan coordinates against CAA Restricted Zones.
+                        </p>
+
+                        <!-- LOCATION INPUT -->
+                        <div class="input-group">
+                            <label>TARGET IDENTIFIER</label>
+                            <div style="display: flex; gap: 10px;">
+                                <input type="text" id="target-loc" placeholder="City, Landmark, or Address..." style="flex:1;">
+                                <button onclick="analyzeAirspace()" class="hud-btn" style="padding: 10px 20px;">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- RESULTS DISPLAY -->
+                        <div id="analysis-result" style="display:none; margin-top: 20px; padding: 20px; background: rgba(0,0,0,0.5); border-radius: 10px;">
+                            <div id="result-title" style="font-weight: 900; font-size: 1.2rem; margin-bottom: 5px;">ANALYZING...</div>
+                            <div id="result-desc" style="font-size: 0.9rem; color: #ccc;">Checking geofence database...</div>
+                        </div>
+
+                        <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">
+                            <button class="submit-btn" onclick="document.getElementById('cert-modal').classList.add('active')">INSPECT PILOT LICENSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- === HUD & CONTROLS === -->
+    
+    <!-- Left Controls -->
+    <div id="hud-controls">
+        <button class="hud-btn" onclick="locateUser()"><i class="fa-solid fa-location-arrow"></i> LOCATE</button>
+    </div>
+
+    <!-- Right Zoom Controls (Visible only on Map Sections) -->
+    <div id="map-zoom-controls">
+        <button class="zoom-btn" onclick="map.zoomIn()"><i class="fa-solid fa-plus"></i></button>
+        <button class="zoom-btn" onclick="map.zoomOut()"><i class="fa-solid fa-minus"></i></button>
+    </div>
+
+    <!-- === MODALS === -->
+
+    <!-- Certificate -->
+    <div id="cert-modal" class="modal">
+        <div class="close-modal" onclick="document.getElementById('cert-modal').classList.remove('active')">&times;</div>
+        <div style="background:white; color:black; padding:60px; max-width:600px; text-align:center; border-radius: 10px;">
+            <h1 style="color:black; -webkit-text-fill-color:black; margin-bottom:10px;">CERTIFICATE</h1>
+            <p style="text-transform:uppercase; letter-spacing:2px; color:#666;">Unmanned Aircraft Systems</p>
+            <h2 style="font-family:serif; font-size:3rem; margin:30px 0; text-decoration:underline;">LIAM FREY</h2>
+            <p>Authorized to operate Sub-250g UAVs compliant with Taiwan CAA regulations.</p>
+            <div style="margin-top:40px; color:green; font-weight:bold; border:2px solid green; display:inline-block; padding:10px 20px;">
+                STATUS: ACTIVE
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Player -->
+    <div id="video-modal" class="modal">
+        <div class="close-modal" onclick="closeVideo()">&times;</div>
+        <video id="main-player" class="main-player" controls playsinline></video>
+    </div>
+
+    <!-- === SCRIPTS === -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
